@@ -1,0 +1,20 @@
+
+Ordner: 
+chessboard-1.0.0.css
+chessboard-1.0.0.min.css 
+"E:\1_IMTraining\3_Projekte\Maschinenraum\SSG 01\Chessboard\css"
+
+---
+.png-Dateien
+"E:\1_IMTraining\3_Projekte\Maschinenraum\SSG 01\Chessboard\img\chesspieces\wikipedia": 
+
+
+---
+chessboard-1.0.0.js
+chessboard-1.0.0.min.js 
+"E:\1_IMTraining\3_Projekte\Maschinenraum\SSG 01\Chessboard\js"
+
+---
+.md-Dateien 
+package.json
+"E:\1_IMTraining\3_Projekte\Maschinenraum\SSG 01\Chessboard" 
