@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Schachbrett-Test mit Steuerung</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Chessboard/css/chessboard-1.0.0.min.css">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+      padding: 2rem;
+    }
+
+    #board {
+      width: 400px;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .controls {
+      margin-top: 1.5rem;
+    }
+
+    .controls button {
+      margin: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #ddd;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>SSG Schach – Brett mit Steuerung</h1>
+  <div id="board"></div>
+
+  <div class="controls">
+    <button id="btn-reset">🔁 Zurücksetzen</button>
+    <button id="btn-undo">⬅️ Zug zurück</button>
+  </div>
+
+  <!-- jQuery CDN mit lokalem Fallback -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    if (!window.jQuery) {
+      document.write('<script src="Chessboard/js/jquery-3.5.1.min.js"><\/script>');
+    }
+  </script>
+
+  <!-- chess.js + chessboard.js -->
+  <script src="Chessboard/js/chess.js"></script>
+  <script src="Chessboard/js/chessboard-1.0.0.min.js"></script>
+  <script>
+    const game = new Chess();
+
+    const board = Chessboard('board', {
+      draggable: true,
+      position: 'start',
+      pieceTheme: 'Chessboard/img/chesspieces/SSG Schachfiguren/{piece}.png',
+      onDrop: function (source, target) {
+        const move = game.move({ from: source, to: target, promotion: 'q' });
+        return move === null ? 'snapback' : undefined;
+      }
+    });
+
+    // Zurücksetzen
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      game.reset();
+      board.position('start');
+    });
+
+    // Letzten Zug rückgängig machen
+    document.getElementById('btn-undo').addEventListener('click', () => {
+      game.undo();
+      board.position(game.fen());
+    });
+  </script>
+</body>
+</html>
