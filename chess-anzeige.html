@@ -2,54 +2,60 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>PGN-Viewer Mobil</title>
+  <title>PGN-Schachanzeige</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mliebelt/pgn-viewer@1.5.9/lib/chessboard.css">
   <style>
     body {
-      font-family: sans-serif;
-      padding: 1em;
-      max-width: 600px;
-      margin: auto;
+      font-family: system-ui, sans-serif;
+      margin: 0 auto;
+      max-width: 640px;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      color: #222;
     }
-    #board {
-      width: 100%;
-      max-width: 400px;
-      margin: 20px auto;
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
     }
     textarea {
       width: 100%;
-      height: 100px;
-      display: block;
-      margin: 10px 0;
+      height: 120px;
+      resize: vertical;
+      font-family: monospace;
+      padding: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
     button {
-      display: block;
       width: 100%;
-      padding: 0.5em;
+      padding: 0.75em;
       font-size: 1em;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005ea2;
+    }
+    #board {
+      margin-top: 2em;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@mliebelt/pgn-viewer@1.5.9/lib/dist.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mliebelt/pgn-viewer@1.5.9/lib/chessboard.css">
 </head>
 <body>
-  <h2>PGN-Schachanzeige (Mobilfähig)</h2>
-  <textarea id="pgnInput" placeholder="Füge hier deine PGN-Zeichenfolge ein..."></textarea>
+  <h1>📘 PGN-Schachanzeige</h1>
+
+  <label for="pgnInput">PGN eingeben:</label>
+  <textarea id="pgnInput" placeholder='z. B.: 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6'></textarea>
   <button onclick="visualizePGN()">Visualisieren</button>
+
   <div id="board"></div>
 
   <script>
     function visualizePGN() {
-      const pgn = document.getElementById('pgnInput').value;
-      document.getElementById('board').innerHTML = '';
-      PGNV.pgnView('board', {
-        pgn: pgn,
-        pieceStyle: 'merida',
-        showFen: false,
-        showNotation: true,
-        locale: 'de'
-      });
-    }
-  </script>
-</body>
-</html>
+      const pgn = document.getEl
