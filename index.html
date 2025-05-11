@@ -58,4 +58,27 @@
 
   <script>
     function visualizePGN() {
-      const pgn = document.getEl
+      const pgn = document.getElementById('pgnInput').value.trim();
+      const board = document.getElementById('board');
+      board.innerHTML = ''; // Reset
+
+      if (!pgn) {
+        alert("Bitte eine gültige PGN-Zeichenfolge eingeben.");
+        return;
+      }
+
+      PGNV.pgnView('board', {
+        pgn: pgn,
+        pieceStyle: 'merida',
+        boardSize: 'medium',
+        showNotation: true,
+        showFen: false,
+        locale: 'de'
+      });
+    }
+
+    // Optional: Autofokus setzen
+    document.getElementById('pgnInput').focus();
+  </script>
+</body>
+</html>
